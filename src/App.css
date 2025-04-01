@@ -1,38 +1,259 @@
 .App {
   text-align: center;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  padding: 30px 50px 50px 50px;
+}
+
+.App-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 119px;
+  display: flex;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  justify-content: left;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: red;
+  padding: 5vh;
+  justify-content: space-between;
+}
+
+.App-title{
+  width: 60%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 860px) {
+  .App-header {
+    padding: 5vh 0;
+  }
+  .App-title {
+    width: 70%;
+  }
+}
+
+@media (max-width: 640px) {
+  .App-title {
+    width: 100%;
+    flex-direction: column;
+    grid-gap: 25px;
+  }
+  .App-controls{
+    display: flex;
+    position: fixed;
+    top:50px;
+    right: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-logo {
+    align-self: flex-start;
+  }
+  .App-controls{
+    display: flex;
+    position: fixed;
+    top:70px;
+    right: 70px;
+  }
+}
+
+.App-status {
+  display: flex;
+  align-items: center;
+}
+
+.App-status-timer {
+  font-size: calc(40px + 2vmin);
+  color: red;
+  font-weight: bolder;
+  line-height: normal; /* Ensures proper line spacing */
+  margin: 0 10px; /* Adds space between the timer and the text */
+  display: inline;
+}
+
+.App-status-text {
+  border-collapse: collapse; /* Ensures borders don't double up */
+  border-left: 2px solid gray; /* Adds a border to the left side of the table */
+  width: 100%; /* Optional: Makes the table take full width */
+  font-size: calc(10px + 2vmin);
+  color: red;
+  font-weight: bolder;
+  height: auto;
+  line-height: normal;
+}
+
+.App-controls{
+  width: 40%;
+  display: flex;
+  justify-content: end;
+}
+
+table tr {
+  border-bottom: 2px solid gray; /* Adds a border between rows */
+}
+
+table tr:last-child {
+  border-bottom: none; /* Removes the border from the last row */
+}
+
+td {
+  padding: 10px;
+}
+
+.App-settings {
+  border-right: 2px solid #878787;
+  padding-right: 10px;
+  color: #878787;
+}
+
+.App-reset {
+  padding-left: 10px;
+  color: #878787;
+}
+
+.grid-container {
+  border-radius: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px); /* 4 columns (m) */
+  grid-gap: 20px; /* Space between grid items */
+  padding: 75px 25px ; /* Space around the grid */
+  background-color: lightgray;
+  justify-content: space-evenly;
+}
+
+.grid-item {
+  top: -100px;
+  background-color: white;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  border-radius: 10px;
+  height: 150px;
+  width: 100px;
+  box-shadow: #878787 0px 5px 5px 0px;
+}
+.card {
+  display: flex;
+  border-radius: 30px;
+  color:  #878787;
+  height: 80%;
+  width: 80%;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  margin: 10px;
+  font-size: 3vh;
+  background-color: lightgray;
+  
+}
+
+.card:hover {
+  background-color: #ebf5f3; /* Change to a lighter gray on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: #b7e9de;
+}
+
+.clicked{ /* Change to a lighter gray on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: #b7e9de;
+  font-size: 3rem;
+  background-color: white;
+  justify-content: center;
+}
+
+.clicked:hover {
+  background-color:white; /* Change to a lighter gray on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/*Settings*/
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.popup {
+  background: white;
+  border-radius: 30px;
+  text-align: center;
+  width: 270px;
+  font-weight: bolder;
+  padding: 15px;
+}
+
+.title {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 25px;
+  margin: 5px;
+}
+
+.title p{
+  justify-self: start;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  justify-self: end;
+}
+
+.setting {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.setting p {
+  width: 80%;
+}
+
+.setting input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 20%;
+  font-size: 16px;
+}
+
+.save-btn {
+  background: #ff4d64;
   color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  height: 45px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.save-btn:hover {
+  background: #e0435b;
 }
