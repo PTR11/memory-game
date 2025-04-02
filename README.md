@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# Memory Game - React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a memory game built with React. The game allows users to match pairs of cards, track their mistakes, and play against a countdown timer. The project uses **styled-components** for styling and **FontAwesome** for icons.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Match pairs of cards.
+- Countdown timer to challenge the player.
+- Settings to configure the number of pairs and countdown time.
+- Responsive design using styled-components.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+Before setting up the project, ensure you have the following installed on your system:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Node.js** (v14 or higher) - [Download Node.js](https://nodejs.org/)
+2. **npm** (comes with Node.js) or **yarn** (optional) - [Install Yarn](https://yarnpkg.com/)
+3. **Git** (optional, for cloning the repository) - [Download Git](https://git-scm.com/)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone the Repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you have Git installed, clone the repository:
 
-### `npm run eject`
+```bash
+git clone https://github.com/your-username/memory-game-react.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Alternatively, download the ZIP file from the repository and extract it.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Navigate to the Project Directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+cd memory-game-react
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 3. Install Dependencies
 
-## Learn More
+```bash
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4. Running the Project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Start the development server with the following command:
+
+```bash
+npm start
+```
+
+This will start the React development server and open the app in your default browser at "http://localhost:3000".
+
+## 5. Project Structure
+
+The project is organized as follows:
+
+```
+Memory-Game/
+├── public/ # Static assets
+├── src/
+│ ├── components/ # React components (e.g., Card, Settings, Status)
+│ ├── styles/ # Styled-components files
+│ ├── utils/ # Utility functions and types
+│ ├── App.tsx # Main app component
+│ ├── index.tsx # Entry point of the app
+│ └── ... # Other files
+├── [package.json](http://_vscodecontentref_/1) # Project metadata and dependencies
+└── [README.md](http://_vscodecontentref_/2) # Project documentation
+```
+
+### Key Sections in the README:
+
+1. **Prerequisites**: Lists the tools required to set up the project.
+2. **Setup Instructions**: Step-by-step guide to clone, install dependencies, and run the project.
+3. **Project Structure**: Overview of the folder structure for better understanding.
+4. **Key Dependencies**: Highlights the main libraries used
+
+This README provides all the necessary information to set up and run the project.
