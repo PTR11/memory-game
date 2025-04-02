@@ -169,7 +169,12 @@ function App() {
          )}
          <GridContainer>
             {gameCards.map((card) => (
-               <Card key={card.id} card={card} callback={handleCardClick} />
+               <Card
+                  key={card.id}
+                  card={card}
+                  callback={handleCardClick}
+                  isGameOver={gameOver}
+               />
             ))}
          </GridContainer>
       </AppContainer>

@@ -38,6 +38,7 @@ const Settings: React.FC<SettingsProps> = ({
                   onChange={(e) => setPairs(Number(e.target.value))}
                   max={30}
                   min={5}
+                  defaultValue={60}
                />
             </Setting>
             <Setting>

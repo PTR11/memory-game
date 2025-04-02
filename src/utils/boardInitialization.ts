@@ -1,10 +1,36 @@
 import { CardType } from "./types";
 
-
 const allAnimalEmojis = [
-   "🦊", "🐶", "🐱", "🐭", "🐰", "🐵", "🐻", "🐼", "🐨", "🐯",
-   "🦁", "🐷", "🐸", "🐔", "🐧", "🐦", "🐤", "🐺", "🦄", "🐝",
-   "🐞", "🦋", "🐢", "🐍", "🐙", "🦑", "🦀", "🐡", "🐬", "🐳",
+   "🦊",
+   "🐶",
+   "🐱",
+   "🐭",
+   "🐰",
+   "🐵",
+   "🐻",
+   "🐼",
+   "🐨",
+   "🐯",
+   "🦁",
+   "🐷",
+   "🐸",
+   "🐔",
+   "🐧",
+   "🐦",
+   "🐤",
+   "🐺",
+   "🦄",
+   "🐝",
+   "🐞",
+   "🦋",
+   "🐢",
+   "🐍",
+   "🐙",
+   "🦑",
+   "🦀",
+   "🐡",
+   "🐬",
+   "🐳",
 ];
 
 export const getRandomEmojis = (count: number): string[] => {
@@ -19,7 +45,7 @@ const shuffleArray = (arr: any[]): any[] => {
       .map((a) => a[1]);
 };
 
-const createBoard = (cards: CardType[], images:string[]): CardType[] =>
+const createBoard = (cards: CardType[], images: string[]): CardType[] =>
    [...cards, ...cards].map((card, i) => ({
       ...card,
       id: `${i}`,
@@ -28,7 +54,7 @@ const createBoard = (cards: CardType[], images:string[]): CardType[] =>
          i < cards.length ? `${i + cards.length}` : `${i - cards.length}`,
    }));
 
-export const initializeBoard = (images:string[]): CardType[] => {
+export const initializeBoard = (images: string[]): CardType[] => {
    const initialCards: CardType[] = Array.from(
       { length: images.length },
       (_, index) => ({
@@ -39,5 +65,5 @@ export const initializeBoard = (images:string[]): CardType[] => {
          matched: false,
       })
    );
-   return shuffleArray(createBoard(initialCards,images)); // Shuffle and set the cards
-}
+   return shuffleArray(createBoard(initialCards, images)); // Shuffle and set the cards
+};

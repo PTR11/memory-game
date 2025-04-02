@@ -8,15 +8,15 @@ import {
    ClickedCard,
 } from "../styles/Card.styles";
 
-const Card: React.FC<CardProps> = ({ card, callback }) => {
+const Card: React.FC<CardProps> = ({ card, callback, isGameOver }) => {
    const handleClick = () => {
       if (!card.clicked) callback(card);
    };
 
    return (
       <GridItem onClick={handleClick}>
-         {!card.clicked ? (
-            <StyledCard>
+         {!card.clicked && !isGameOver ? (
+            <StyledCard gameOver={isGameOver}>
                <FontAwesomeIcon
                   icon={faQuestion}
                   size="2xl"
@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ card, callback }) => {
                />
             </StyledCard>
          ) : (
-            <ClickedCard>{card.image}</ClickedCard>
+            <ClickedCard gameOver={isGameOver}>{card.image}</ClickedCard>
          )}
       </GridItem>
    );
