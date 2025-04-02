@@ -61,6 +61,16 @@ This will start the React development server and open the app in your default br
 
 The project is organized as follows:
 
+## 6. Run the Tests
+
+To ensure the application is functioning correctly, you can run the tests by the following command:
+
+```bash
+npm test
+```
+
+## 7. Overview
+
 ```
 Memory-Game/
 ├── public/ # Static assets
@@ -81,5 +91,6 @@ Memory-Game/
 2. **Setup Instructions**: Step-by-step guide to clone, install dependencies, and run the project.
 3. **Project Structure**: Overview of the folder structure for better understanding.
 4. **Key Dependencies**: Highlights the main libraries used
+5. **Run tests**: How to run the unit tests of the project
 
 This README provides all the necessary information to set up and run the project.

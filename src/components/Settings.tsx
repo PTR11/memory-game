@@ -34,11 +34,10 @@ const Settings: React.FC<SettingsProps> = ({
                <SettingLabel>Number of pairs of cards:</SettingLabel>
                <SettingInput
                   type="number"
-                  value={pairs}
+                  defaultValue={pairs}
                   onChange={(e) => setPairs(Number(e.target.value))}
                   max={30}
                   min={5}
-                  defaultValue={60}
                />
             </Setting>
             <Setting>
