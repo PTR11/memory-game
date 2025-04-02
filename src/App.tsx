@@ -1,12 +1,22 @@
 import React from "react";
 import logo from "./images/logo.svg";
-import Card from "./Card";
-import "./App.css";
+import Card from "./components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import { CardType } from "./utils/types";
 import { initializeBoard, getRandomEmojis } from "./utils/boardInitialization";
-import Settings from "./Settings";
+import Settings from "./components/Settings";
+import Status from "./components/Status";
+import {
+   AppContainer,
+   AppHeader,
+   AppTitle,
+   AppLogo,
+   AppControls,
+   AppSettings,
+   AppReset,
+   GridContainer,
+} from "./styles/App.styles";
 
 function App() {
    const [gameCards, setGameCards] = React.useState<CardType[]>([]);
@@ -27,29 +37,34 @@ function App() {
       setGameOver(false);
       setIsSettingsOpen(false);
    };
+
    const resetGame = () => {
+      // Reset the game state
       setMatchedCards(0);
       setMistakes(0);
-      setTimeLeft(60); // Reset timer to 60 seconds
+      setTimeLeft(60);
       setGameOver(false);
       images = getRandomEmojis(pairs);
-      setGameCards(initializeBoard(images)); // Reset the game board
+      setGameCards(initializeBoard(images));
    };
 
    const handleSave = (pairs: number, countdown: number) => {
+      // In case of saving settings, reset the game with new settings
+      setMatchedCards(0);
+      setMistakes(0);
       setPairs(pairs);
       setTimeLeft(countdown);
       setIsSettingsOpen(false);
       setGameOver(false);
       images = getRandomEmojis(pairs);
-      setGameCards(initializeBoard(images)); // Get random emojis based on pairs
+      setGameCards(initializeBoard(images));
    };
 
-   // Example: Initialize and shuffle cards
    React.useEffect(() => {
       if (timeLeft === 0 && !gameOver) {
-         setGameOver(true); // Mark the game as over
-         alert("Time's up! Game over."); // Show the alert only once
+         // Mark the game as over
+         setGameOver(true);
+         alert("Time's up! Game over.");
       } else if (timeLeft > 0 && !gameOver) {
          const intervalId = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
@@ -60,17 +75,25 @@ function App() {
    }, [timeLeft, gameOver]);
 
    React.useEffect(() => {
-      setGameCards(initializeBoard(images)); // Initialize the game board with random emojis
+      // Initialize the game board with random emojis
+      setGameCards(initializeBoard(images));
    }, [pairs]);
 
+   React.useEffect(() => {
+      if (matchedCards === images.length) {
+         alert("You win!");
+         setGameOver(true);
+      }
+   }, [matchedCards]);
+
    const handleCardClick = (card: CardType) => {
-      if (gameOver) return;
+      if (gameOver || card.clicked || card.matched) return;
 
       setGameCards((prevCards) => {
          const updatedCards = prevCards.map((c) =>
             c.id === card.id ? { ...c, clicked: !c.clicked } : c
          );
-         // Check for a match after updating the clicked state
+
          const clickedCards = updatedCards.filter(
             (c) => c.clicked && !c.matched
          );
@@ -81,17 +104,15 @@ function App() {
             if (firstCard.matchingCardId === secondCard.id) {
                // Match found
                setMatchedCards(matchedCards + 1);
-               if (matchedCards + 1 === images.length) {
-                  alert("You win!");
-               }
                return updatedCards.map((c) =>
                   c.id === firstCard.id || c.id === secondCard.id
                      ? { ...c, matched: true }
                      : c
                );
             } else {
+               //No match
                setMistakes(mistakes + 1);
-               // No match, flip back after a delay
+               // Unflip cards after a short delay
                setTimeout(() => {
                   setGameCards((prevCards) =>
                      prevCards.map((c) =>
@@ -108,39 +129,33 @@ function App() {
    };
 
    return (
-      <div className="App">
-         <header className="App-header">
-            <div className="App-title">
-               <img src={logo} className="App-logo" alt="logo" />
-               <div className="App-status">
-                  <div className="App-status-timer">{timeLeft}</div>
-                  <table className="App-status-text">
-                     <tbody>
-                        <tr>
-                           <td>{matchedCards} matches</td>
-                        </tr>
-                        <tr>
-                           <td>{mistakes} mistakes</td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </div>
-            <div className="App-controls">
-               <FontAwesomeIcon
-                  icon={faGear}
-                  className="App-settings"
-                  size="xl"
-                  onClick={openSettings}
+      <AppContainer>
+         <AppHeader>
+            <AppTitle>
+               <AppLogo src={logo} alt="logo" />
+               <Status
+                  matchedCards={matchedCards}
+                  mistakes={mistakes}
+                  timeLeft={timeLeft}
                />
-               <FontAwesomeIcon
-                  icon={faRepeat}
-                  className="App-reset"
-                  size="xl"
-                  onClick={resetGame}
-               />
-            </div>
-         </header>
+            </AppTitle>
+            <AppControls>
+               <AppSettings>
+                  <FontAwesomeIcon
+                     icon={faGear}
+                     size="xl"
+                     onClick={openSettings}
+                  />
+               </AppSettings>
+               <AppReset>
+                  <FontAwesomeIcon
+                     icon={faRepeat}
+                     size="xl"
+                     onClick={resetGame}
+                  />
+               </AppReset>
+            </AppControls>
+         </AppHeader>
          {isSettingsOpen && (
             <Settings
                isOpen={isSettingsOpen}
@@ -152,12 +167,12 @@ function App() {
                onSave={handleSave}
             />
          )}
-         <div className="grid-container">
+         <GridContainer>
             {gameCards.map((card) => (
                <Card key={card.id} card={card} callback={handleCardClick} />
             ))}
-         </div>
-      </div>
+         </GridContainer>
+      </AppContainer>
    );
 }
 

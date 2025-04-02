@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Settings from "../Settings";
+import Settings from "../components/Settings";
 
 describe("Settings Component", () => {
    const mockOnClose = jest.fn();

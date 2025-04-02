@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Card from "../Card";
+import Card from "../components/Card";
 import { CardType } from "../utils/types";
 
 describe("Card Component", () => {

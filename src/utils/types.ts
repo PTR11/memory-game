@@ -16,3 +16,24 @@ export type CardType = {
     matchingCardId: string;
     matched: boolean;
  };
+
+ export interface CardProps {
+    card: CardType;
+    callback: (card: CardType) => void;
+ }
+
+ export interface SettingsProps {
+    isOpen: boolean;
+    onClose: () => void;
+    pairs: number;
+    setPairs: (pairs: number) => void;
+    countdown: number;
+    setCountdown: (countdown: number) => void;
+    onSave: (pairs: number, countdown: number) => void;
+ }
+
+ export interface StatusProps {
+    matchedCards: number;
+    mistakes: number;
+    timeLeft: number;
+ }
